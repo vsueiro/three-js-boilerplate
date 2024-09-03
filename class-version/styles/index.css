@@ -1,0 +1,23 @@
+html {
+  overflow: hidden;
+}
+
+body {
+  margin: 0;
+}
+
+#world {
+  background: #000;
+  height: 100%;
+  position: absolute;
+  width: 100%;
+}
+
+#world .canvas {
+  position: absolute;
+}
+
+#world .canvas2D {
+  pointer-events: none;
+  position: absolute;
+}

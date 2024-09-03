@@ -5,6 +5,7 @@ import Controls from "./Controls.js";
 import Renderer from "./Renderer.js";
 import Mouse from "./Mouse.js";
 import Renderer2D from "./Renderer2D.js";
+import Animation from "./Animation.js";
 // import Raycaster from "./Raycaster.js";
 
 import Box from "./Box.js";
@@ -36,6 +37,8 @@ export default class World {
     this.renderer = new Renderer(this);
     this.mouse = new Mouse(this);
     this.renderer2D = new Renderer2D(this);
+    this.animation = new Animation(this);
+
     // this.raycaster = new Raycaster(this);
 
     // Create custom object
@@ -63,6 +66,7 @@ export default class World {
     this.renderer.update();
     this.mouse.update();
     this.renderer2D.update();
+    this.animation.update();
     // this.raycaster.update();
 
     // Update custom object

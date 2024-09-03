@@ -15,7 +15,16 @@ export default class Box {
   }
 
   update() {
-    this.instance.rotation.x = this.world.deltaTime.lastTime * 0.001;
-    this.instance.rotation.y = this.world.deltaTime.lastTime * 0.001;
+    const currentX = this.instance.rotation.x;
+    const targetX = this.world.mouse.coords.x * Math.PI * 0.5;
+
+    const currentY = this.instance.rotation.y;
+    const targetY = this.world.mouse.coords.y * Math.PI * 0.5;
+
+    const x = this.world.animation.expDecay(currentX, targetX);
+    const y = this.world.animation.expDecay(currentY, targetY);
+
+    this.instance.rotation.x = x;
+    this.instance.rotation.y = y;
   }
 }

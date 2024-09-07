@@ -8,7 +8,7 @@ import Renderer from "./Renderer.js";
 import Mouse from "./Mouse.js";
 import Renderer2D from "./Renderer2D.js";
 import Animation from "./Animation.js";
-// import Raycaster from "./Raycaster.js";
+import Raycaster from "./Raycaster.js";
 
 import Box from "./Box.js";
 import Cats from "./Cats.js";
@@ -42,13 +42,10 @@ export default class World {
     this.mouse = new Mouse(this);
     this.renderer2D = new Renderer2D(this);
     this.animation = new Animation(this);
+    this.raycaster = new Raycaster(this);
 
     // Custom
     this.textureLoader = new THREE.TextureLoader();
-
-    // this.raycaster = new Raycaster(this);
-
-    // Create custom object
     this.box = new Box(this);
     this.cats = new Cats(this);
 
@@ -68,6 +65,7 @@ export default class World {
   update(ms) {
     this.deltaTime.update(ms);
 
+    // Basic
     this.scene.update();
     this.camera.update();
     this.controls.update();
@@ -75,9 +73,9 @@ export default class World {
     this.mouse.update();
     this.renderer2D.update();
     this.animation.update();
-    // this.raycaster.update();
+    this.raycaster.update();
 
-    // Update custom object
+    // Custom
     this.box.update();
     this.cats.update();
 

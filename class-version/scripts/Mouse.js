@@ -19,7 +19,13 @@ export default class Mouse {
   }
 
   handleClick(event) {
-    console.log("clicked");
+    const closest = this.world.raycaster.closest("type", "cat");
+
+    if (closest === undefined) {
+      return;
+    }
+
+    alert(closest.userData.title);
   }
 
   setup() {

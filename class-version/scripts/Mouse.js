@@ -11,8 +11,6 @@ export default class Mouse {
   }
 
   handleMove(event) {
-    console.log(this.coords);
-
     const { offsetX, offsetY } = event;
     const { width, height } = this.world;
 

@@ -1,13 +1,24 @@
+import Data from "./Data.js";
 import World from "./World.js";
 
 export default class App {
   constructor() {
-    this.world = new World(this, ".canvas", ".canvas2D");
+    this.data = new Data();
 
-    this.setup();
+    const sources = [
+      {
+        name: "cats",
+        path: "./data/cats.csv",
+        type: "csv", // (csv|json)
+      },
+    ];
+
+    this.data.load(sources, () => {
+      this.setup();
+    });
   }
 
   setup() {
-    // Load data, etc
+    this.world = new World(this, ".canvas", ".canvas2D");
   }
 }

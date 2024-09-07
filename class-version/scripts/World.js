@@ -1,3 +1,5 @@
+import * as THREE from "three";
+
 import DeltaTime from "./DeltaTime.js";
 import Scene from "./Scene.js";
 import Camera from "./Camera.js";
@@ -9,6 +11,7 @@ import Animation from "./Animation.js";
 // import Raycaster from "./Raycaster.js";
 
 import Box from "./Box.js";
+import Cats from "./Cats.js";
 
 export default class World {
   constructor(app, canvas, canvas2D) {
@@ -31,6 +34,7 @@ export default class World {
   setup() {
     this.deltaTime = new DeltaTime();
 
+    // Basic
     this.scene = new Scene(this);
     this.camera = new Camera(this);
     this.controls = new Controls(this);
@@ -39,10 +43,14 @@ export default class World {
     this.renderer2D = new Renderer2D(this);
     this.animation = new Animation(this);
 
+    // Custom
+    this.textureLoader = new THREE.TextureLoader();
+
     // this.raycaster = new Raycaster(this);
 
     // Create custom object
     this.box = new Box(this);
+    this.cats = new Cats(this);
 
     window.addEventListener("resize", () => {
       this.resize();
@@ -71,6 +79,7 @@ export default class World {
 
     // Update custom object
     this.box.update();
+    this.cats.update();
 
     requestAnimationFrame((ms) => this.update(ms));
   }

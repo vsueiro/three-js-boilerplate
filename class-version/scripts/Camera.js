@@ -8,6 +8,9 @@ export default class Camera {
     this.near = 0.1;
     this.far = 2000;
     this.zoom = 1;
+    this.x = 0;
+    this.y = 0;
+    this.z = 10;
 
     this.setup();
   }
@@ -34,9 +37,7 @@ export default class Camera {
     );
 
     this.instance.zoom = this.zoom;
-
-    // TODO: Make dynamic
-    this.instance.position.z = 10;
+    this.instance.position.set(this.x, this.y, this.z);
 
     this.instance.lookAt(this.origin);
     this.world.scene.instance.add(this.instance);

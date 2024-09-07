@@ -1,6 +1,6 @@
 import * as THREE from "three";
 
-export default class Mouse {
+export default class Pointer {
   constructor(world) {
     this.world = world;
 
@@ -11,6 +11,13 @@ export default class Mouse {
     this.threshold = this.diff * 0.005;
     this.dragging = false;
     this.down = false;
+    this.pointerType = "";
+
+    this.events = {
+      pointerdown: "handlePointerDown",
+      pointermove: "handlePointerMove",
+      pointerup: "handlePointerUp",
+    };
 
     this.setup();
   }
@@ -24,15 +31,19 @@ export default class Mouse {
     return new THREE.Vector2(x, y);
   }
 
-  handleDown(event) {
+  handlePointerDown(event) {
     this.down = true;
     this.prevCoords = this.getCoords(event);
-  }
-
-  handleMove(event) {
     this.coords = this.getCoords(event);
 
-    if (this.down) {
+    this.pointerType = event.pointerType;
+    console.log(this.pointerType);
+  }
+
+  handlePointerMove(event) {
+    this.coords = this.getCoords(event);
+
+    if (this.down && !this.dragging) {
       const distance = this.prevCoords.distanceTo(this.coords);
 
       if (distance > this.threshold) {
@@ -41,7 +52,9 @@ export default class Mouse {
     }
   }
 
-  handleUp(event) {
+  handlePointerUp(event) {
+    this.coords = this.getCoords(event);
+
     if (this.dragging === false) {
       this.handleClick();
     }
@@ -53,29 +66,17 @@ export default class Mouse {
   handleClick() {
     const closest = this.world.raycaster.closest("type", "cat");
 
-    if (closest === undefined) {
-      return;
+    if (closest) {
+      alert(closest.userData.title);
     }
-
-    alert(closest.userData.title);
   }
 
   setup() {
-    this.world.element.addEventListener("mousedown", (event) => {
-      this.handleDown(event);
-    });
-
-    this.world.element.addEventListener("mousemove", (event) => {
-      this.handleMove(event);
-    });
-
-    this.world.element.addEventListener("mouseup", (event) => {
-      this.handleUp(event);
-    });
-
-    // this.world.element.addEventListener("click", (event) => {
-    //   this.handleClick(event);
-    // });
+    for (let [name, handler] of Object.entries(this.events)) {
+      this.world.element.addEventListener(name, (event) => {
+        this[handler](event);
+      });
+    }
   }
 
   update() {}

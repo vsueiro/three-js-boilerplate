@@ -35,12 +35,17 @@ export default class Raycaster {
 
   updatePosition() {
     this.instance.setFromCamera(
-      this.world.mouse.coords,
+      this.world.pointer.coords,
       this.world.camera.instance
     );
   }
 
-  updatematches() {
+  updateMatches() {
+    if (this.world.pointer.dragging) {
+      this.matches = [];
+      return;
+    }
+
     const { children } = this.world.scene.instance;
     this.matches = this.instance.intersectObjects(children);
   }
@@ -60,7 +65,7 @@ export default class Raycaster {
 
   update() {
     this.updatePosition();
-    this.updatematches();
+    this.updateMatches();
     this.updateHover();
   }
 }

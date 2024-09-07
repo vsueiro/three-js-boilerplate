@@ -16,10 +16,10 @@ export default class Box {
 
   update() {
     const currentX = this.instance.rotation.x;
-    const targetX = this.world.mouse.coords.x * Math.PI * 0.5;
+    const targetX = this.world.pointer.coords.x * Math.PI * 0.5;
 
     const currentY = this.instance.rotation.y;
-    const targetY = this.world.mouse.coords.y * Math.PI * 0.5;
+    const targetY = this.world.pointer.coords.y * Math.PI * 0.5;
 
     const x = this.world.animation.expDecay(currentX, targetX);
     const y = this.world.animation.expDecay(currentY, targetY);

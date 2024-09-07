@@ -5,7 +5,7 @@ import Scene from "./Scene.js";
 import Camera from "./Camera.js";
 import Controls from "./Controls.js";
 import Renderer from "./Renderer.js";
-import Mouse from "./Mouse.js";
+import Pointer from "./Pointer.js";
 import Renderer2D from "./Renderer2D.js";
 import Animation from "./Animation.js";
 import Raycaster from "./Raycaster.js";
@@ -39,7 +39,7 @@ export default class World {
     this.camera = new Camera(this);
     this.controls = new Controls(this);
     this.renderer = new Renderer(this);
-    this.mouse = new Mouse(this);
+    this.pointer = new Pointer(this);
     this.renderer2D = new Renderer2D(this);
     this.animation = new Animation(this);
     this.raycaster = new Raycaster(this);
@@ -70,7 +70,7 @@ export default class World {
     this.camera.update();
     this.controls.update();
     this.renderer.update();
-    this.mouse.update();
+    this.pointer.update();
     this.renderer2D.update();
     this.animation.update();
     this.raycaster.update();

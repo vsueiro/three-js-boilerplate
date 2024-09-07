@@ -1,4 +1,5 @@
 html {
+  background: #000;
   overflow: hidden;
 }
 
@@ -7,9 +8,14 @@ body {
 }
 
 #world {
-  background: #000;
   height: 100%;
+  outline: none;
   position: absolute;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: none;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  user-select: none;
   width: 100%;
 }
 

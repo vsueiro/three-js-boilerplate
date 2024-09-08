@@ -48,6 +48,8 @@ export default class Pointer {
 
       if (distance > this.threshold) {
         this.dragging = true;
+
+        this.world.controls.orbitInstance.autoRotate = false;
       }
     }
   }

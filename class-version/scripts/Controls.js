@@ -13,6 +13,7 @@ export default class Controls {
       this.world.camera.instance,
       this.world.canvas
     );
+    this.orbitInstance.autoRotate = true;
     this.orbitInstance.enableRotate = true;
     this.orbitInstance.enableZoom = false;
     this.orbitInstance.enablePan = false;
